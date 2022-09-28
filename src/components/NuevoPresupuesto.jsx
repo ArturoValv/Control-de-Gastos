@@ -8,7 +8,7 @@ const NuevoPresupuesto = ({
 }) => {
   const [mensaje, setMensaje] = useState("");
 
-  const handlePresupuesto = (e) => {
+  const handlePresupuesto = (e) => {  
     e.preventDefault();
 
     if (!presupuesto || presupuesto < 0) {
