@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  LeadingActions,
+  SwipeableList,
+  SwipeableListItem,
+  SwipeAction,
+  TrailingActions,
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
 import { formatearFecha } from "../helpers";
 import IconoAhorro from "../img/icono_ahorro.svg";
 import IconoCasa from "../img/icono_casa.svg";
@@ -20,22 +28,41 @@ const diccionarioIconos = {
 
 const Gasto = ({ gasto }) => {
   const { categoria, concepto, monto, id, fecha } = gasto;
+  const trailingActions = () => (
+    <TrailingActions>
+      <SwipeAction onClick={() => console.log("Eliminar")}>
+        Eliminar
+      </SwipeAction>
+    </TrailingActions>
+  );
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction onClick={() => console.log("editar...")}>Editar</SwipeAction>
+    </LeadingActions>
+  );
   return (
-    <div className="gasto sombra">
-      <div className="contenido-gasto">
-        <img src={diccionarioIconos[categoria]} alt="Icono Gasto" />
+    <SwipeableList>
+      <SwipeableListItem
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+      >
+        <div className="gasto sombra">
+          <div className="contenido-gasto">
+            <img src={diccionarioIconos[categoria]} alt="Icono Gasto" />
 
-        <div className="descripcion-gasto">
-          <p className="categoria">{categoria}</p>
-          <p className="nombre-gasto">{concepto}</p>
-          <p className="fecha-gasto">
-            Agregado el: {""}
-            <span>{formatearFecha(fecha)}</span>
-          </p>
+            <div className="descripcion-gasto">
+              <p className="categoria">{categoria}</p>
+              <p className="nombre-gasto">{concepto}</p>
+              <p className="fecha-gasto">
+                Agregado el: {""}
+                <span>{formatearFecha(fecha)}</span>
+              </p>
+            </div>
+          </div>
+          <p className="cantidad-gasto">${monto}</p>
         </div>
-      </div>
-      <p className="cantidad-gasto">${monto}</p>
-    </div>
+      </SwipeableListItem>
+    </SwipeableList>
   );
 };
 
