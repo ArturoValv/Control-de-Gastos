@@ -26,11 +26,11 @@ const diccionarioIconos = {
   gastos: IconoGastos,
 };
 
-const Gasto = ({ gasto, setGastoEditar }) => {
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
   const { categoria, concepto, monto, id, fecha } = gasto;
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log("Eliminar")}>
+      <SwipeAction onClick={() => eliminarGasto(id)} destructive={true}>
         Eliminar
       </SwipeAction>
     </TrailingActions>
