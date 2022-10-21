@@ -26,7 +26,7 @@ const diccionarioIconos = {
   gastos: IconoGastos,
 };
 
-const Gasto = ({ gasto }) => {
+const Gasto = ({ gasto, setGastoEditar }) => {
   const { categoria, concepto, monto, id, fecha } = gasto;
   const trailingActions = () => (
     <TrailingActions>
@@ -37,7 +37,7 @@ const Gasto = ({ gasto }) => {
   );
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log("editar...")}>Editar</SwipeAction>
+      <SwipeAction onClick={() => setGastoEditar(gasto)}>Editar</SwipeAction>
     </LeadingActions>
   );
   return (
